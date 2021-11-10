@@ -116,6 +116,11 @@ elif customerType == "RETURNING":
     password_input.clear()
     password_input.send_keys("Pass234word")
 
+    loginbtn = browser.find_element_by_xpath("//input[@type='submit']")
+    loginbtn.click()
+
+
+
 
 
 
