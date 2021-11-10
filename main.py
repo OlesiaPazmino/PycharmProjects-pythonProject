@@ -9,8 +9,8 @@ browser.get(url)
 browser.maximize_window()
 logo = browser.find_element_by_xpath("//img[@title='Brainbucket']")
 newregistrantbtn = browser.find_element_by_xpath("//a[contains(text(),'Continue')]")
-
-customerType = "RETURNING"
+#Select below NEW or RETURNING customer, upper case only
+customerType = "NEW"
 
 if customerType == "NEW":
 
@@ -87,7 +87,7 @@ if customerType == "NEW":
     assert "required" in country_field_class
     country_input = browser.find_element_by_id("input-country")
     # country_input.clear()
-    country_input.send_keys("Ecuador")
+    country_input.send_keys("United States")
 
 
     password_field = browser.find_element_by_xpath("//fieldset[3]/div[1]")
