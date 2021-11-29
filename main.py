@@ -1,21 +1,26 @@
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+url = 'https://cleveronly.com/brainbucket/index.php?route=account/login'
 
 s = Service('/Users/opazmino/Downloads/chromedriver')
 browser = webdriver.Chrome(service=s)
-url = 'https://cleveronly.com/brainbucket/index.php?route=account/login'
+
 browser.get(url)
 browser.maximize_window()
 logo = browser.find_element_by_xpath("//img[@title='Brainbucket']")
-newregistrantbtn = browser.find_element_by_xpath("//a[contains(text(),'Continue')]")
 #Select below NEW or RETURNING customer, upper case only
 customerType = "NEW"
 
 if customerType == "NEW":
 
-    newregistrantbtn.click()
-
+#does not click here !!!!
+    wait = WebDriverWait(webdriver, 5)
+    new_registrant_btn = wait.until(EC.element_to_be_clickable((By.XPATH, "//a[contains(text(),'Continue')]")))
+    new_registrant_btn.click()
     firstname_field = browser.find_element_by_xpath("//fieldset/div[2]")
     firstname_field_class = firstname_field.get_attribute("class")
     assert "required" in firstname_field_class
